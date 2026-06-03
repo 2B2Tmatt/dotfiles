@@ -1,0 +1,19 @@
+@define-color bg0 #1e222a; /* Base bar color (Deepest midnight grey) */
+@define-color bg1 #242933; /* Module background layer 1 */
+@define-color bg2 #2e3440; /* Module background layer 2 (Classic Nord Dark) */
+@define-color bg3 #3b4252; /* Hover states / Active highlight bases */
+@define-color bg4 #434c5e; /* Lighter borders / Separator accents */
+
+@define-color fg  #d8dee9; /* Primary text (Frost white) */
+
+@define-color grey0 #4c566a; /* Dark muted text / Dead modules */
+@define-color grey1 #707880; /* Medium functional grey */
+@define-color grey2 #eceff4; /* Brightest white accent */
+
+@define-color red    #bf616a; /* Warning states (e.g., Critical Battery) */
+@define-color orange #d08770; /* Cautionary states */
+@define-color yellow #ebcb8b; /* Reminders / System updates available */
+@define-color green  #a3be8c; /* Stable / Normal operational text */
+@define-color aqua   #88c0d0; /* Radiant Frost Blue (Perfect for focused workspace) */
+@define-color blue   #81a1c1; /* Calm Steel Blue (Great for Clock / Network) */
+@define-color purple #b48ead; /* Distant Aurora Purple */
