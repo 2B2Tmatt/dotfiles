@@ -1,0 +1,104 @@
+{
+  // OFF FOR LEETCODE PRACTICE
+  //OFF FOREVER TOO MUCH INFO
+  "cli_default_open_behavior": "existing_window",
+  "tab_size": 2,
+  "languages": {
+    "C": {
+      "tab_size": 4,
+    },
+    "C++": {
+      "tab_size": 4,
+    },
+  },
+  "outline_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "agent": {
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "git_panel": {
+    "dock": "left",
+  },
+  "auto_signature_help": false,
+  "disable_ai": true,
+  "show_signature_help_after_edits": false,
+  // OFF FOR LEETCODE
+  "show_completions_on_input": true,
+  //
+  "icon_theme": "Bearded Icon Theme",
+  "ui_font_size": 24,
+  "buffer_font_size": 21,
+  "theme": {
+    "mode": "dark",
+    "light": "Melange Light",
+    "dark": "Melange Dark", // Catppuccin Mocha - No Italics",
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": false,
+    },
+  },
+
+  "theme_overrides": {},
+  "vim_mode": true,
+  "title_bar": {
+    "show_onboarding_banner": false,
+    "show_project_items": false,
+    "show_branch_name": false,
+    "show_user_menu": false,
+  },
+  "tab_bar": {
+    "show": true,
+  },
+  "toolbar": {
+    "quick_actions": false,
+  },
+
+  "status_bar": {
+    "experimental.show": false,
+  },
+  "project_panel": {
+    "dock": "right",
+    "hide_root": true,
+    "git_status": true,
+    "starts_open": false,
+    "sticky_scroll": false,
+    "auto_fold_dirs": false,
+    "default_width": 320,
+    "scrollbar": {
+      "show": "never",
+    },
+    "indent_guides": {
+      "show": "never",
+    },
+  },
+  "scrollbar": {
+    "show": "never",
+  },
+  "gutter": {
+    "min_line_number_digits": 0,
+    "folds": false,
+    "runnables": false,
+    "breakpoints": false,
+  },
+  "indent_guides": {
+    "enabled": false,
+  },
+  "buffer_font_family": "JetBrainsMono Nerd Font",
+  "ui_font_family": "JetBrainsMono Nerd Font",
+  "relative_line_numbers": "enabled",
+  "extend_comment_on_newline": false,
+  "inline_code_actions": false,
+  "terminal": {
+    "default_height": 500,
+  },
+  "auto_install_extensions": {
+    "hackatime": true,
+  },
+}
