@@ -8,19 +8,11 @@
   "margin-left": 10,
   "margin-right": 10,
 
-  "modules-left": [
-    "custom/nixos",
-    "hyprland/workspaces",
-    "mpris"
-  ],
+  "modules-left": ["custom/nixos", "hyprland/workspaces", "mpris"],
 
   "modules-center": [],
 
-  "modules-right": [
-    "group/ctl",
-    "group/stats",
-    "clock"
-  ],
+  "modules-right": ["group/ctl", "group/stats", "clock"],
 
   // ======================
   // HYPRLAND
@@ -39,15 +31,15 @@
       "7": "<span size='13500'>󰭀</span>",
       "8": "<span size='13500'>󰭁</span>",
       "9": "<span size='13500'>󰭂</span>",
-      "10": "<span size='13500'>󰿩</span>"
+      "10": "<span size='13500'>󰿩</span>",
     },
     "persistent-workspaces": {
       "1": [],
       "2": [],
       "3": [],
       "4": [],
-      "5": []
-    }
+      "5": [],
+    },
   },
 
   // ======================
@@ -57,19 +49,17 @@
   "clock": {
     "format": "{:%I:%M %p}",
     "format-alt": "{:%e %B %A}",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
   },
 
   "cpu": {
     "interval": 2,
-    "format": "{icon} {usage}%",
-    "format-icons": ["󰪞","󰪟","󰪠","󰪡","󰪢","󰪣","󰪤","󰪥"]
+    "format": " {usage}%" /* Static Chip Icon */,
   },
 
   "memory": {
     "interval": 2,
-    "format": "{icon} {percentage}%",
-    "format-icons": ["󰪞","󰪟","󰪠","󰪡","󰪢","󰪣","󰪤","󰪥"]
+    "format": " {percentage}%" /* Static RAM Stick Icon */,
   },
 
   "network": {
@@ -79,29 +69,25 @@
     "format-wifi": "{icon}",
     "format-ethernet": "󰌘",
     "format-disconnected": "󰤮",
-    "format-icons": ["󰤯","󰤟","󰤢","󰤥","󰤨"],
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
     "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes} ⇡{bandwidthUpBytes}",
     "tooltip-format-ethernet": "⇣{bandwidthDownBytes} ⇡{bandwidthUpBytes}",
-    "tooltip-format-disconnected": "Disconnected"
+    "tooltip-format-disconnected": "Disconnected",
   },
-
   "battery": {
     "interval": 5,
-    "format": "{capacity}% {icon}",
-    "format-discharging": "{icon}",
-    "format-charging": "{icon}",
-    "format-plugged": "",
-    "format-full": "󰂅",
-    "format-icons": {
-      "charging": ["󰢜","󰂆","󰂇","󰂈","󰢝","󰂉","󰢞","󰂊","󰂋","󰂅"],
-      "default": ["󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"]
-    },
+    "format": "{icon} {capacity}%",
+    "format-discharging": "{icon} {capacity}%",
+    "format-charging": "{icon} {capacity}%",
+    "format-plugged": "{icon} {capacity}%",
+    "format-full": "{icon} {capacity}%",
+    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
     "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
     "states": {
       "warning": 20,
-      "critical": 10
-    }
+      "critical": 10,
+    },
   },
 
   "bluetooth": {
@@ -110,18 +96,18 @@
     "format-connected": "",
     "format-no-controller": "",
     "tooltip-format": "Devices connected: {num_connections}",
-    "on-click": "blueman-manager"
+    "on-click": "blueman-manager",
   },
 
   "pulseaudio": {
     "format": "{icon}",
     "format-muted": "",
     "format-icons": {
-      "default": ["","",""]
+      "default": ["", "", ""],
     },
     "scroll-step": 5,
     "tooltip-format": "Volume: {volume}%",
-    "on-click": "pavucontrol"
+    "on-click": "pavucontrol",
   },
 
   "mpris": {
@@ -141,16 +127,36 @@
       "spotify": "󰎆",
       "vlc": "󰕼",
       "mpv": "󰐹",
-      "default": ""
+      "default": "",
     },
     "status-icons": {
       "playing": "",
       "paused": "",
-      "stopped": ""
+      "stopped": "",
     },
-    "dynamic-order": ["artist","title"],
+    "dynamic-order": ["artist", "title"],
     "ignored-players": ["firefox"],
-    "max-length": 40
+    "max-length": 40,
+  },
+  "custom/notification": {
+    "tooltip": true,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "󱅫",
+      "none": "󰂜",
+      "dnd-notification": "󰂠",
+      "dnd-none": "󰪓",
+      "inhibited-notification": "󰂛",
+      "inhibited-none": "󰪑",
+      "dnd-inhibited-notification": "󰂛",
+      "dnd-inhibited-none": "󰪑",
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true,
   },
 
   // ======================
@@ -159,24 +165,16 @@
 
   "group/stats": {
     "orientation": "inherit",
-    "modules": [
-      "cpu",
-      "memory",
-      "battery"
-    ]
+    "modules": ["cpu", "memory", "battery"],
   },
 
   "group/misc-expander": {
     "orientation": "inherit",
-    "modules": [
-      "custom/expand-icon",
-      "power-profiles-daemon",
-      "tray"
-    ],
+    "modules": ["custom/expand-icon", "power-profiles-daemon", "tray"],
     "drawer": {
       "transition-duration": 600,
-      "children-class": "misc-group-item"
-    }
+      "children-class": "misc-group-item",
+    },
   },
 
   "group/ctl": {
@@ -184,9 +182,10 @@
     "modules": [
       "group/misc-expander",
       "network",
-      "bluetooth",
-      "pulseaudio"
-    ]
+      //"bluetooth",
+      "custom/notification",
+      "pulseaudio",
+    ],
   },
 
   // ======================
@@ -195,17 +194,17 @@
 
   "custom/nixos": {
     "format": "",
-    "tooltip": false
+    "tooltip": false,
   },
 
   "custom/expand-icon": {
     "format": "",
-    "tooltip": false
+    "tooltip": false,
   },
 
   "tray": {
     "icon-size": 12,
-    "spacing": 4
+    "spacing": 4,
   },
 
   "power-profiles-daemon": {
@@ -216,7 +215,7 @@
       "default": "",
       "performance": "",
       "balanced": "",
-      "power-saver": ""
-    }
-  }
+      "power-saver": "",
+    },
+  },
 }

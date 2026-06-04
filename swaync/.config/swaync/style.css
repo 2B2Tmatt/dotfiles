@@ -1,0 +1,211 @@
+@define-color background #2B2A27;
+@define-color foreground #E6DCC6;
+@define-color accent     #81a1c1;
+@define-color color3     #88c0d0;
+@define-color color6     #4c566a;
+
+* {
+  font-family: "JetBrainsMono Nerd Font Propo", sans-serif;
+  font-size: 15px;
+  all: unset;
+}
+
+/* ======================
+   BASE WINDOW & CC CONTAINER
+====================== */
+.control-center {
+  background-color: @background;
+  color: @foreground;
+  border-radius: 16px;
+  margin: 8px;
+  padding: 14px;
+  border: 1px solid alpha(@accent, 0.3);
+}
+
+.blank-window {
+  background: transparent;
+}
+
+/* ======================
+   WIDGET TITLE & HEADERS
+====================== */
+.widget-title {
+  margin-bottom: 10px;
+}
+.widget-title > label {
+  font-size: 18px;
+  font-weight: bold;
+  color: @foreground;
+}
+.widget-title > button {
+  background-color: alpha(@foreground, 0.1);
+  color: @foreground;
+  padding: 4px 12px;
+  border-radius: 16px;
+}
+.widget-title > button:hover {
+  background-color: @foreground;
+  color: @background;
+}
+
+/* ======================
+   SLIDERS (VOLUME & BRIGHTNESS)
+====================== */
+.widget-volume,
+.widget-backlight {
+  background-color: alpha(@foreground, 0.05);
+  border-radius: 16px;
+  padding: 10px 14px;
+  margin: 6px 0;
+}
+
+.widget-volume label,
+.widget-backlight label {
+  color: @accent;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.widget-volume trough,
+.widget-backlight trough {
+  background-color: alpha(@foreground, 0.1);
+  border-radius: 8px;
+  min-height: 12px;
+}
+
+.widget-volume highlight,
+.widget-backlight highlight {
+  background-color: @accent;
+  border-radius: 8px;
+}
+
+/* ======================
+   DO NOT DISTURB
+====================== */
+.widget-dnd {
+  background-color: alpha(@foreground, 0.05);
+  border-radius: 16px;
+  padding: 10px 14px;
+  margin: 6px 0;
+}
+.widget-dnd > label {
+  color: @foreground;
+  font-weight: bold;
+}
+.widget-dnd switch {
+  background-color: alpha(@foreground, 0.1);
+  border-radius: 16px;
+  padding: 2px;
+}
+.widget-dnd switch:checked {
+  background-color: @accent;
+}
+.widget-dnd switch slider {
+  background-color: @background;
+  border-radius: 16px;
+  min-width: 18px;
+  min-height: 18px;
+}
+
+/* ======================
+   MPRIS PLAYER
+====================== */
+.widget-mpris {
+  background-color: alpha(@foreground, 0.05);
+  border-radius: 16px;
+  padding: 12px;
+  margin: 6px 0;
+}
+
+.mpris-background {
+  border-radius: 12px;
+  background-color: alpha(@background, 0.5);
+}
+
+.widget-mpris-album-art {
+  border-radius: 12px;
+  margin-right: 12px;
+}
+
+.widget-mpris-title {
+  font-weight: bold;
+  font-size: 15px;
+  color: @foreground;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.widget-mpris-subtitle {
+  font-size: 13px;
+  color: @color3;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.widget-mpris-player button {
+  color: @foreground;
+  background-color: alpha(@background, 0.85);
+  border: 1px solid alpha(@foreground, 0.2);
+  border-radius: 8px;
+  padding: 6px 14px;
+  margin: 6px 4px 0 4px;
+}
+
+.widget-mpris-player button:hover {
+  color: @background;
+  background-color: @accent;
+  border-color: @accent;
+}
+
+/* ======================
+   SHUTDOWN BUTTONS GRID (STRICT 3 COLUMNS)
+====================== */
+.widget-buttons-grid {
+  margin-top: 10px;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button {
+  background-color: alpha(@foreground, 0.08);
+  color: @foreground;
+  padding: 10px 4px;
+  margin: 4px;
+  border-radius: 16px;
+  font-weight: bold;
+  /* Scaled down tightly to ensure 3 fit per horizontal line */
+  min-width: 100px;
+  min-height: 40px;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+  background-color: @accent;
+  color: @background;
+}
+
+/* ======================
+   NOTIFICATIONS BOX
+====================== */
+.notification-row {
+  margin: 6px 0;
+}
+.notification-content {
+  background-color: alpha(@foreground, 0.04);
+  border: 1px solid alpha(@foreground, 0.1);
+  border-radius: 16px;
+  padding: 12px;
+}
+.notification-content .summary {
+  font-weight: bold;
+  color: @foreground;
+}
+.notification-content .body {
+  color: alpha(@foreground, 0.8);
+  font-size: 14px;
+}
+.close-button {
+  background-color: alpha(@foreground, 0.1);
+  color: @foreground;
+  border-radius: 16px;
+  padding: 2px 6px;
+}
+.close-button:hover {
+  background-color: #de6868;
+  color: @background;
+}
