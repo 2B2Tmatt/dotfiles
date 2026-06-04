@@ -1,103 +1,226 @@
-@import "colors/cold.css";
+@define-color background #2B2A27;  /* Cozy deep slate gray */
+@define-color foreground #E6DCC6;  /* Soft off-white text */
+
+/* Accent & Component Colors */
+@define-color accent     #81a1c1;  /* Steel blue shadow highlights / Nix Blue */
+@define-color color3     #88c0d0;  /* Frost blue balance status */
+@define-color color6     #4c566a;  /* Muted dark gray logo mask */
+
+/* ======================
+   GLOBAL
+====================== */
 
 * {
   border: none;
-  border-radius: 0px;
-
-  font-family: "Adwaita Sans", "JetBrainsMono Nerd Font Propo", sans-serif;
-  font-weight: bold;
-
   min-height: 0;
+  font-family: "JetBrainsMono Nerd Font Propo";
+  font-size: 16px; /* Upscaled base size */
+}
+
+window#waybar {
+  background-color: transparent;
+  transition: background-color 0.5s ease;
+}
+
+.modules-left {
+  margin-left: 8px; /* Breathing room from screen edge */
+}
+
+.modules-right {
+  padding-top: 1px;
+  margin-right: 8px; /* Breathing room from screen edge */
+}
+
+.hidden {
+  opacity: 0;
+}
+
+/* ======================
+   EMPTY STATE
+====================== */
+
+window#waybar.empty #window {
+  background: transparent;
+  border-radius: 0;
+  color: transparent;
   padding: 0;
   margin: 0;
 }
 
-window#waybar {
-  background: transparent;
+#waybar.empty .modules-center {
+  opacity: 0;
 }
 
-tooltip {
-  background: @bg0;
-  border: 1px solid @bg3;
-  border-radius: 12px;
-}
-
-tooltip label {
-  color: @fg;
-  padding: 6px;
-}
+/* ======================
+   WORKSPACES
+====================== */
 
 #workspaces {
-  background-color: @bg0;
-  padding: 5px 3px;
-  margin: 0 0 0 12px;
-  border-radius: 18px;
-  border: 1px solid @bg1;
-  color: @fg;
+  padding: 0 6px;
+  margin: 2px 6px;
+  border-radius: 16px;
 }
 
 #workspaces button {
-  padding: 0px 6px;
-  margin: 0px 3px;
-  border-radius: 50px;
-  color: transparent;
-  background-color: @bg1;
-  transition: all 0.3s ease-in-out;
-}
-
-#workspaces button.active {
-  background-color: @blue;
-  color: @bg0;
-  min-width: 50px;
-  transition: all 0.3s ease-in-out;
-  font-size: 13px;
+  padding: 4px 16px; 
+  margin: 0 2px;
+  background-color: @background;
+  color: @foreground;
+  border-radius: 6px;
+  transition: all 250ms ease;
 }
 
 #workspaces button:hover {
-  background-color: @purple;
-  color: @bg0;
-  border-radius: 16px;
-  min-width: 50px;
-  background-size: 400% 400%;
+  background: @foreground;
+  color: @background;
+  border-radius: 12px;
+  transition: all 0.1s ease;
 }
 
-#workspaces button.urgent {
-  background-color: @red;
-  color: @bg0;
-  border-radius: 16px;
-  min-width: 50px;
-  background-size: 400% 400%;
-  transition: all 0.3s ease-in-out;
+#workspaces button.active {
+  background-color: @foreground;
+  color: @background;
+  margin: 0 3px;
+  min-width: 40px;
+  font-weight: bold;
 }
 
-#battery,
-#pulseaudio,
-#network,
-#clock,
-#custom-notification {
-  background-color: @bg0;
-  padding: 0 15px 0 15px;
-  margin: 0 0 0 12px;
-  border-radius: 50px;
-  border: 1px solid @bg1;
+#workspaces button.empty {
+  color: alpha(@foreground, 0.5);
+  background-color: @background;
 }
+
+#workspaces button:first-child {
+  border-radius: 16px 4px 4px 16px;
+}
+
+#workspaces button:last-child {
+  border-radius: 4px 16px 16px 4px;
+}
+
+/* ======================
+   MODULE GROUPS (RIGHT PILLS)
+====================== */
+
+#group-misc, 
+#group_misc, 
+#misc, 
+#group-ctl, 
+#group_ctl, 
+#ctl, 
+#group-stats,
+#group_stats, 
+#stats {
+  background-color: @background;
+  color: @foreground;
+  font-weight: bold;
+  margin-left: 12px; /* Spaces out the individual pills from each other */
+  border-radius: 16px; /* Full rounded uniform pills */
+  padding: 4px 14px; 
+}
+
+#group-misc-expander, 
+#group_misc-expander, 
+#misc-expander {
+  border-radius: 16px;
+}
+
+/* ======================
+   CLOCK (FAR RIGHT PILL)
+====================== */
 
 #clock {
-  color: @blue;
+  background-color: @background;
+  color: @foreground;
+  font-weight: bold;
+  border-radius: 16px;
+  margin-left: 12px; /* Uniform spacing match */
+  padding: 4px 16px;
 }
 
-#custom-notification {
-  color: @fg;
+/* ======================
+   SYSTEM MODULE SPACING (INTERIOR PILL ITEMS)
+====================== */
+
+#cpu, #memory, #battery {
+  margin: 0 8px; /* Adds clean spacing between stats icons */
 }
 
+#custom-expand-icon,
+#network,
+#bluetooth,
 #pulseaudio {
-  color: @yellow;
+  margin: 0 8px; /* Adds clean spacing between control icons */
 }
 
-#network {
-  color: @purple;
+#tray {
+  background: alpha(@foreground, 0);
+  border-radius: 16px;
+  padding: 0 6px;
+  margin: 4px 0px;
 }
 
-#battery {
-  color: @green;
+/* ======================
+   CUSTOM MODULES
+====================== */
+
+#custom-nixos {
+  border-radius: 16px;
+  color: @accent;
+  background-color: @background;
+  padding: 4px 12px; /* Fixed, uniform matching circle/pill padding */
+  margin: 2px 4px;
+  font-size: 18px; /* Prominent layout look */
+}
+
+/* ======================
+   POWER PROFILES
+====================== */
+
+#power-profiles-daemon.performance {
+  color: #de6868;
+}
+
+#power-profiles-daemon.balanced {
+  color: @color3;
+}
+
+#power-profiles-daemon.power-saver {
+  color: #31a93f;
+}
+
+/* ======================
+   MPRIS
+====================== */
+
+#mpris {
+  background-color: @background;
+  color: @foreground;
+  font-weight: bold;
+  margin-left: 8px;
+  border-radius: 16px;
+  padding: 4px 14px;
+}
+
+#mpris.playing {
+  animation: mpris-breathe 4s ease-in-out infinite;
+}
+
+@keyframes mpris-breathe {
+  0%   { text-shadow: 0 0 1px alpha(@accent,0.15); }
+  50%  { text-shadow: 0 0 3px alpha(@accent,0.35); }
+  100% { text-shadow: 0 0 1px alpha(@accent,0.15); }
+}
+
+/* ======================
+   TOOLTIP
+====================== */
+
+tooltip {
+  background: @background;
+  border: 1px solid alpha(@accent, 0.5);
+}
+
+tooltip label {
+  color: @foreground;
 }
