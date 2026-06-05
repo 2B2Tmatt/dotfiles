@@ -1,0 +1,85 @@
+@define-color base_bg    #2B2A27;
+@define-color button_bg  #21201E;
+@define-color foreground #E6DCC6;
+
+* {
+  background-image: none;
+  box-shadow: none;
+  font-family: "JetBrainsMono Nerd Font Propo";
+  font-size: 16px;
+}
+
+window {
+  background-image: url("/home/matt/Pictures/wallpapers/forest-black.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+button {
+  color: alpha(@foreground, 0.75);
+  background-color: alpha(@button_bg, 0.85);
+  border-style: solid;
+  border-width: 2px;
+  border-color: alpha(@foreground, 0.05);
+  border-radius: 16px;
+  margin: 14px;
+  padding: 10px;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 25%;
+
+  transition: all 200ms ease-in-out;
+}
+
+button:focus,
+button:active,
+button:hover {
+  background-color: alpha(@base_bg, 0.95);
+  border-color: transparent;
+  color: @foreground;
+  outline-style: none;
+}
+
+#lock {
+  background-image: image(
+    url("/nix/store/1sb6gcc8b2gb2cl56rcbr9yl1s4kh4sy-wlogout-1.2.2/share/wlogout/icons/lock.png"),
+    url("/usr/local/share/wlogout/icons/lock.png")
+  );
+}
+
+#logout {
+  background-image: image(
+    url("/nix/store/1sb6gcc8b2gb2cl56rcbr9yl1s4kh4sy-wlogout-1.2.2/share/wlogout/icons/logout.png"),
+    url("/usr/local/share/wlogout/icons/logout.png")
+  );
+}
+
+#suspend {
+  background-image: image(
+    url("/nix/store/1sb6gcc8b2gb2cl56rcbr9yl1s4kh4sy-wlogout-1.2.2/share/wlogout/icons/suspend.png"),
+    url("/usr/local/share/wlogout/icons/suspend.png")
+  );
+}
+
+#hibernate {
+  background-image: image(
+    url("/nix/store/1sb6gcc8b2gb2cl56rcbr9yl1s4kh4sy-wlogout-1.2.2/share/wlogout/icons/hibernate.png"),
+    url("/usr/local/share/wlogout/icons/hibernate.png")
+  );
+}
+
+#shutdown {
+  background-image: image(
+    url("/nix/store/1sb6gcc8b2gb2cl56rcbr9yl1s4kh4sy-wlogout-1.2.2/share/wlogout/icons/shutdown.png"),
+    url("/usr/local/share/wlogout/icons/shutdown.png")
+  );
+}
+
+#reboot {
+  background-image: image(
+    url("/nix/store/1sb6gcc8b2gb2cl56rcbr9yl1s4kh4sy-wlogout-1.2.2/share/wlogout/icons/reboot.png"),
+    url("/usr/local/share/wlogout/icons/reboot.png")
+  );
+}
