@@ -31,6 +31,7 @@ zstyle ':completion:*' menu no
 
 alias ls='ls --color'
 alias ll="exa -l"
+alias zed='zeditor'
 
 # --- Zinit Bootstrap ---
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
