@@ -8,7 +8,7 @@
   "margin-left": 10,
   "margin-right": 10,
 
-  "modules-left": ["custom/nixos", "hyprland/workspaces", "mpris"],
+  "modules-left": ["custom/nixos", "hyprland/workspaces"], 
 
   "modules-center": [],
 
@@ -125,6 +125,7 @@
       "chromium": "",
       "firefox": "",
       "spotify": "󰎆",
+      "spotify-client": "󰎆",
       "vlc": "󰕼",
       "mpv": "󰐹",
       "default": "",
