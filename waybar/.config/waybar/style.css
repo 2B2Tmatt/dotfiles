@@ -1,226 +1,156 @@
-@define-color background #2B2A27;  /* Cozy deep slate gray */
-@define-color foreground #E6DCC6;  /* Soft off-white text */
-
-/* Accent & Component Colors */
-@define-color accent     #81a1c1;  /* Steel blue shadow highlights / Nix Blue */
-@define-color color3     #88c0d0;  /* Frost blue balance status */
-@define-color color6     #4c566a;  /* Muted dark gray logo mask */
-
-/* ======================
-   GLOBAL
-====================== */
+@define-color background #171717;
+@define-color foreground #E6DCC6;
+@define-color accent     #81a1c1;
+@define-color color3     #88c0d0;
+@define-color color6     #4c566a;
+@define-color transparent rgba(0, 0, 0, 0);
 
 * {
   border: none;
   min-height: 0;
   font-family: "JetBrainsMono Nerd Font Propo";
-  font-size: 14px; /* Upscaled base size */
+  font-size: 12.8px;
+  font-weight: bold;
 }
 
 window#waybar {
-  background-color: transparent;
-  transition: background-color 0.5s ease;
+  background-color: @background;
+  color: @foreground;
 }
 
-.modules-left {
-  margin-left: 8px; /* Breathing room from screen edge */
+/* Attached top bar: square top, rounded bottom */
+#waybar > box {
+  margin: 0;
+  padding: 2px 8px;
+  border-radius: 0 0 16px 16px;
+  background-color: @background;
+  box-shadow: 0 2px 7px alpha(#000000, 0.38);
+  transition-property: background-color;
+  transition-duration: 0.5s;
 }
-
-.modules-right {
-  padding-top: 1px;
-  margin-right: 8px; /* Breathing room from screen edge */
-}
-
-.hidden {
-  opacity: 0;
-}
-
-/* ======================
-   EMPTY STATE
-====================== */
 
 window#waybar.empty #window {
   background: transparent;
-  border-radius: 0;
   color: transparent;
+  border: none;
   padding: 0;
   margin: 0;
 }
 
-#waybar.empty .modules-center {
-  opacity: 0;
+/* NixOS icon */
+#custom-nixos {
+  color: @accent;
+  background: transparent;
+  border-radius: 0;
+  padding: 2px 8px 2px 4px;
+  margin: 0 3px 0 0;
+  font-size: 15px;
 }
 
-/* ======================
-   WORKSPACES
-====================== */
+/* Right-side modules */
+#clock,
+#battery,
+#network,
+#pulseaudio {
+  color: @foreground;
+  background: transparent;
+  border-radius: 0;
+  padding: 2px 6px;
+  margin: 0 1px;
+  min-width: 15px;
+}
+
+#clock {
+  padding-right: 3px;
+}
+/*
+*/
 
 #workspaces {
-  padding: 0 6px;
-  margin: 2px 6px;
-  border-radius: 16px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0 8px;
 }
 
 #workspaces button {
-  padding: 4px 16px; 
-  margin: 0 2px;
-  background-color: @background;
-  color: @foreground;
-  border-radius: 6px;
-  transition: all 250ms ease;
+  min-width: 8px;
+  min-height: 8px;
+  padding: 0;
+  margin: 12px 4px;
+  background-color: alpha(@foreground, 0.32);
+  border: none;
+  border-radius: 999px;
+  box-shadow: none;
+  transition-property: min-width, background-color;
+  transition-duration: 0.25s;
+  transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+#workspaces button.active,
+#workspaces button.focused,
+#workspaces button.visible {
+  min-width: 26px;
+  background-color: @foreground;
 }
 
 #workspaces button:hover {
-  background: @foreground;
-  color: @background;
-  border-radius: 12px;
-  transition: all 0.1s ease;
+  background-color: alpha(@foreground, 0.6);
 }
 
-#workspaces button.active {
-  background-color: @foreground;
-  color: @background;
-  margin: 0 3px;
-  min-width: 40px;
-  font-weight: bold;
+#workspaces button label {
+  font-size: 0;
+  padding: 0;
+  margin: 0;
 }
 
-#workspaces button.empty {
-  color: alpha(@foreground, 0.5);
-  background-color: @background;
-}
-
-#workspaces button:first-child {
-  border-radius: 16px 4px 4px 16px;
-}
-
-#workspaces button:last-child {
-  border-radius: 4px 16px 16px 4px;
-}
-
-/* ======================
-   MODULE GROUPS (RIGHT PILLS)
-====================== */
-
-#group-misc, 
-#group_misc, 
-#misc, 
-#group-ctl, 
-#group_ctl, 
-#ctl, 
-#group-stats,
-#group_stats, 
-#stats {
-  background-color: @background;
+/*
+*/
+#clock:hover,
+#battery:hover,
+#network:hover,
+#pulseaudio:hover,
+#custom-nixos:hover {
   color: @foreground;
-  font-weight: bold;
-  margin-left: 12px; /* Spaces out the individual pills from each other */
-  border-radius: 16px; /* Full rounded uniform pills */
-  padding: 4px 14px; 
+  background-color: alpha(@foreground, 0.055);
+  border-radius: 9px;
 }
 
-#group-misc-expander, 
-#group_misc-expander, 
-#misc-expander {
-  border-radius: 16px;
+/* Battery states */
+#battery.warning {
+  color: #d08770;
 }
 
-/* ======================
-   CLOCK (FAR RIGHT PILL)
-====================== */
-
-#clock {
-  background-color: @background;
-  color: @foreground;
-  font-weight: bold;
-  border-radius: 16px;
-  margin-left: 12px; /* Uniform spacing match */
-  padding: 4px 16px;
-}
-
-/* ======================
-   SYSTEM MODULE SPACING (INTERIOR PILL ITEMS)
-====================== */
-
-#cpu, #memory, #battery {
-  margin: 0 8px; /* Adds clean spacing between stats icons */
-}
-
-#custom-expand-icon,
-#network,
-#bluetooth,
-#pulseaudio {
-  margin: 0 8px; /* Adds clean spacing between control icons */
-}
-
-#tray {
-  background: alpha(@foreground, 0);
-  border-radius: 16px;
-  padding: 0 6px;
-  margin: 4px 0px;
-}
-
-/* ======================
-   CUSTOM MODULES
-====================== */
-
-#custom-nixos {
-  border-radius: 16px;
-  color: @accent;
-  background-color: @background;
-  padding: 4px 12px; /* Fixed, uniform matching circle/pill padding */
-  margin: 2px 4px;
-  font-size: 18px; /* Prominent layout look */
-}
-
-/* ======================
-   POWER PROFILES
-====================== */
-
-#power-profiles-daemon.performance {
+#battery.critical:not(.charging) {
   color: #de6868;
+  animation-name: blink-battery;
+  animation-duration: 0.6s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
-#power-profiles-daemon.balanced {
-  color: @color3;
+@keyframes blink-battery {
+  to {
+    color: @foreground;
+  }
 }
 
-#power-profiles-daemon.power-saver {
-  color: #31a93f;
-}
-
-/* ======================
-   MPRIS
-====================== */
-
-#mpris {
-  background-color: @background;
-  color: @foreground;
-  font-weight: bold;
-  margin-left: 8px;
-  border-radius: 16px;
-  padding: 4px 14px;
-}
-
-#mpris.playing {
-  animation: mpris-breathe 4s ease-in-out infinite;
-}
-
-@keyframes mpris-breathe {
-  0%   { text-shadow: 0 0 1px alpha(@accent,0.15); }
-  50%  { text-shadow: 0 0 3px alpha(@accent,0.35); }
-  100% { text-shadow: 0 0 1px alpha(@accent,0.15); }
-}
-
-/* ======================
-   TOOLTIP
-====================== */
-
+/* Tooltip */
 tooltip {
   background: @background;
-  border: 1px solid alpha(@accent, 0.5);
+  border: 1px solid alpha(@accent, 0.4);
+  border-radius: 14px;
+  padding: 7px;
+  box-shadow: 0 2px 8px alpha(#000000, 0.45);
+  opacity: 0.98;
 }
 
 tooltip label {
   color: @foreground;
+  font-weight: normal;
+}
+
+.hidden {
+  opacity: 0;
 }

@@ -1,38 +1,24 @@
 {
   "reload_style_on_change": true,
-  "layer": "top",
   "position": "top",
   "spacing": 0,
-  "height": 24,
-  "margin-top": 2,
-  "margin-left": 10,
-  "margin-right": 10,
+  "height": 36,
+  "margin": "0",
 
-  "modules-left": ["custom/nixos", "hyprland/workspaces"], 
+  "modules-left": ["custom/nixos"],
 
-  "modules-center": [],
+  "modules-center": ["hyprland/workspaces"],
 
-  "modules-right": ["group/ctl", "group/stats", "clock"],
+  "modules-right": ["network", "pulseaudio", "battery", "clock"],
 
-  // ======================
-  // HYPRLAND
-  // ======================
+  "custom/nixos": {
+    "format": "",
+    "tooltip": false,
+  },
 
   "hyprland/workspaces": {
     "on-click": "activate",
-    "format": "{icon}",
-    "format-icons": {
-      "1": "<span size='13500'>󰬺</span>",
-      "2": "<span size='13500'>󰬻</span>",
-      "3": "<span size='13500'>󰬼</span>",
-      "4": "<span size='13500'>󰬽</span>",
-      "5": "<span size='13500'>󰬾</span>",
-      "6": "<span size='13500'>󰬿</span>",
-      "7": "<span size='13500'>󰭀</span>",
-      "8": "<span size='13500'>󰭁</span>",
-      "9": "<span size='13500'>󰭂</span>",
-      "10": "<span size='13500'>󰿩</span>",
-    },
+    "format": "",
     "persistent-workspaces": {
       "1": [],
       "2": [],
@@ -40,26 +26,6 @@
       "4": [],
       "5": [],
     },
-  },
-
-  // ======================
-  // CORE MODULES
-  // ======================
-
-  "clock": {
-    "format": "{:%I:%M %p}",
-    "format-alt": "{:%e %B %A}",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-  },
-
-  "cpu": {
-    "interval": 2,
-    "format": " {usage}%" /* Static Chip Icon */,
-  },
-
-  "memory": {
-    "interval": 2,
-    "format": " {percentage}%" /* Static RAM Stick Icon */,
   },
 
   "network": {
@@ -74,30 +40,6 @@
     "tooltip-format-ethernet": "⇣{bandwidthDownBytes} ⇡{bandwidthUpBytes}",
     "tooltip-format-disconnected": "Disconnected",
   },
-  "battery": {
-    "interval": 5,
-    "format": "{icon} {capacity}%",
-    "format-discharging": "{icon} {capacity}%",
-    "format-charging": "{icon} {capacity}%",
-    "format-plugged": "{icon} {capacity}%",
-    "format-full": "{icon} {capacity}%",
-    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-    "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
-    "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
-    "states": {
-      "warning": 20,
-      "critical": 10,
-    },
-  },
-
-  "bluetooth": {
-    "format": "",
-    "format-disabled": "󰂲",
-    "format-connected": "",
-    "format-no-controller": "",
-    "tooltip-format": "Devices connected: {num_connections}",
-    "on-click": "blueman-manager",
-  },
 
   "pulseaudio": {
     "format": "{icon}",
@@ -110,113 +52,34 @@
     "on-click": "pavucontrol",
   },
 
-  "mpris": {
-    "interval": 10,
-    "format": "{player_icon} {dynamic}",
-    "format-paused": "{status_icon} {artist} {title}",
-    "scroll-step": 5,
-    "smooth-scrolling-threshold": 1,
-    "tooltip": true,
-    "tooltip-format": "{status_icon} {dynamic}\nLeft: previous\nMiddle: pause\nRight: next",
-    "on-click": "playerctl previous",
-    "on-click-middle": "playerctl play-pause",
-    "on-click-right": "playerctl next",
-    "player-icons": {
-      "chromium": "",
-      "firefox": "",
-      "spotify": "󰎆",
-      "spotify-client": "󰎆",
-      "vlc": "󰕼",
-      "mpv": "󰐹",
-      "default": "",
-    },
-    "status-icons": {
-      "playing": "",
-      "paused": "",
-      "stopped": "",
-    },
-    "dynamic-order": ["artist", "title"],
-    "ignored-players": ["firefox"],
-    "max-length": 40,
-  },
-  "custom/notification": {
-    "tooltip": true,
-    "format": "{icon}",
-    "format-icons": {
-      "notification": "󱅫",
-      "none": "󰂜",
-      "dnd-notification": "󰂠",
-      "dnd-none": "󰪓",
-      "inhibited-notification": "󰂛",
-      "inhibited-none": "󰪑",
-      "dnd-inhibited-notification": "󰂛",
-      "dnd-inhibited-none": "󰪑",
-    },
-    "return-type": "json",
-    "exec-if": "which swaync-client",
-    "exec": "swaync-client -swb",
-    "on-click": "swaync-client -t -sw",
-    "on-click-right": "swaync-client -d -sw",
-    "escape": true,
-  },
-
-  // ======================
-  // GROUPS
-  // ======================
-
-  "group/stats": {
-    "orientation": "inherit",
-    "modules": ["cpu", "memory", "battery"],
-  },
-
-  "group/misc-expander": {
-    "orientation": "inherit",
-    "modules": ["custom/expand-icon", "power-profiles-daemon", "tray"],
-    "drawer": {
-      "transition-duration": 600,
-      "children-class": "misc-group-item",
+  "battery": {
+    "interval": 5,
+    "format": "{icon} {capacity}%",
+    "format-discharging": "{icon} {capacity}%",
+    "format-charging": "{icon} {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-full": "󰂅 {capacity}%",
+    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "tooltip-format-discharging": "{power:>1.0f}W↓ {timeTo}",
+    "tooltip-format-charging": "{power:>1.0f}W↑ {timeTo}",
+    "states": {
+      "warning": 20,
+      "critical": 10,
     },
   },
 
-  "group/ctl": {
-    "orientation": "inherit",
-    "modules": [
-      "group/misc-expander",
-      "network",
-      //"bluetooth",
-      "custom/notification",
-      "pulseaudio",
-    ],
-  },
-
-  // ======================
-  // CUSTOM MODULES
-  // ======================
-
-  "custom/nixos": {
-    "format": "",
-    "tooltip": false,
-  },
-
-  "custom/expand-icon": {
-    "format": "",
-    "tooltip": false,
-  },
-
-  "tray": {
-    "icon-size": 12,
-    "spacing": 4,
-  },
-
-  "power-profiles-daemon": {
-    "format": "{icon}",
-    "tooltip": true,
-    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-    "format-icons": {
-      "default": "",
-      "performance": "",
-      "balanced": "",
-      "power-saver": "",
+  "clock": {
+    "format": "{:%I:%M %p}",
+    "format-alt": "{:%A, %B %d}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "format": {
+        "month": "<span color='#E6DCC6'><b>{}</b></span>",
+        "weekdays": "<span color='#88c0d0'><b>{}</b></span>",
+        "today": "<span color='#81a1c1'><b>{}</b></span>",
+      },
     },
   },
 }
