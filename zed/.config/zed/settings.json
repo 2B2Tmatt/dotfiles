@@ -37,7 +37,7 @@
   "theme": {
     "mode": "dark",
     "light": "Melange Light",
-    "dark": "Melange Dark", // Catppuccin Mocha - No Italics",
+    "dark": "GitHub Dark", // Catppuccin Mocha - No Italics",
   },
   "git": {
     "inline_blame": {
